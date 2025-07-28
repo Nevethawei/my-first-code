@@ -1,0 +1,34 @@
+
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+
+data = {
+    'Hours_Studied': [1, 2, 3, 4, 5, 6],
+    'Grade': [50, 55, 65, 70, 75, 85]
+}
+
+
+df = pd.DataFrame(data)
+
+X = df[['Hours_Studied']] 
+y = df['Grade']           
+
+
+model = LinearRegression()
+model.fit(X, y)
+
+
+hours = 7
+predicted_grade = model.predict([[hours]])
+
+print(f"Predicted grade for {hours} hours of study: {predicted_grade[0]:.2f}")
+
+
+plt.scatter(X, y, color='blue')
+plt.plot(X, model.predict(X), color='red')
+plt.xlabel("Hours Studied")
+plt.ylabel("Grade")
+plt.title("Study Hours vs Grade")
+plt.show() 
